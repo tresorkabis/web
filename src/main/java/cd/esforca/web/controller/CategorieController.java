@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import cd.esforca.web.model.Categorie;
 import cd.esforca.web.service.CategorieService;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -49,7 +48,7 @@ public class CategorieController {
 	}
 
     @GetMapping("/deleteCategorie/{code}")
-    public ModelAndView deleteCategorie(@RequestParam("code") final String code) {
+    public ModelAndView deleteCategorie(@PathVariable("code") final String code) {
         service.deleteCategorie(code);
         return new ModelAndView("redirect:/categories");
     }
