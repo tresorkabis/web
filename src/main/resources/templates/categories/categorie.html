@@ -4,20 +4,14 @@
 <head th:replace="layout/app :: html_head" />
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" th:href="@{/}">Stock</a>
-			</div>
-		</div>
-	</nav>
+	<div th:replace="~{layout/app :: menu}" />
 
 	<div class="container special">
 
 		<h2 class="h2"><span th:text="${titre}">Titre</span></h2>
 		<div>
 			<form method="post"
-				th:action="@{/saveCategorie}" th:object="${categorie}">
+				th:action="@{/categories/saveCategorie}" th:object="${categorie}">
 				<div class="form-group">
 					<label for="code">Code</label> 
 					<input
@@ -30,7 +24,7 @@
 					<input
 						type="text" th:field="*{titre}" name="titre" class="form-control" id="titre"
 						aria-describedby="titre" placeholder="Saisir le titre"> <small
-						id="lastNameHelp" class="form-text text-muted">Merci d'écrire le titre.</small>
+						id="titre" class="form-text text-muted">Merci d'écrire le titre.</small>
 				</div>				
 				<button type="submit" class="btn btn-primary">Enregistrer</button>
 			</form>
@@ -38,7 +32,6 @@
 
 	</div>
 
-	<script th:src="@{/js/jquery.min.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+	<div th:replace="~{layout/app :: script}" />
 </body>
 </html>
