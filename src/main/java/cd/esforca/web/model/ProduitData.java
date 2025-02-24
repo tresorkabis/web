@@ -1,8 +1,5 @@
 package cd.esforca.web.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import cd.esforca.web.service.CategorieService;
 import lombok.Data;
 
 @Data
@@ -50,7 +47,6 @@ public class ProduitData {
                 ", qte='" + getQte() + "'" +
                 ", prix='" + getPrix() + "'" +
                 ", codeCategorie='" + getCodeCategorie() + "'" +
-                ", categorieService='" + getCategorieService() + "'" +
                 "}";
     }
 

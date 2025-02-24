@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import cd.esforca.web.model.Categorie;
 import cd.esforca.web.model.Produit;
-import cd.esforca.web.repository.CategorieProxy;
 import cd.esforca.web.service.CategorieService;
 import cd.esforca.web.service.ProduitService;
 
