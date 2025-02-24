@@ -9,14 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" th:href="@{/}">Stock</a>
-			</div>
-		</div>
-	</nav>
+	<div th:replace="~{layout/app :: menu}" />
 
 	<div class="container special">
 		<div class="table-responsive">
@@ -43,9 +36,8 @@
 				</tbody>
 			</table>
 		</div>
-
-        <script th:src="@{/js/jquery.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
 	</div>
+
+	<div th:replace="~{layout/app :: script}" />
 </body>
 </html>

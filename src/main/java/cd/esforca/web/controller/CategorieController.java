@@ -23,6 +23,7 @@ public class CategorieController {
     public String index(Model model){
         Iterable<Categorie> categories = service.getCategories();
         model.addAttribute("categories", categories);
+        model.addAttribute("pageTitle", "Categories");
         return "categories/index";
     }
 
@@ -30,21 +31,24 @@ public class CategorieController {
 	public String createCategorie(Model model) {
 		Categorie c = new Categorie();
 		model.addAttribute("categorie", c);
-		return "categories/create";
+        model.addAttribute("pageTitle", "Nouvelle Categorie");
+        model.addAttribute("titre", "Ajout d'une nouvelle catégorie");
+		return "categories/categorie";
 	}
 
     @PostMapping("/saveCategorie")
     public ModelAndView saveCategorie(@ModelAttribute Categorie categorie){
-        System.out.println(categorie.toString());
-        service.saveCategorie(categorie, "New");
+        service.saveCategorie(categorie);
         return new ModelAndView("redirect:/categories");
     }
 
     @GetMapping("/updateCategorie/{code}")
 	public String updateCategorie(@PathVariable("code") final String code, Model model) {
-		Categorie c = service.getCategorie(code);		
-		model.addAttribute("categorie", c);	
-		return "categories/edit";		
+		Categorie c = service.getCategorie(code);	
+		model.addAttribute("categorie", c);
+        model.addAttribute("pageTitle", "Mise à jour d'une Categorie");	
+        model.addAttribute("titre", "Mise à jour d'une catégorie");
+		return "categories/categorie";		
 	}
 
     @GetMapping("/deleteCategorie/{code}")

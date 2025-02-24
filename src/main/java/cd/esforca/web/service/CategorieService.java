@@ -26,13 +26,15 @@ public class CategorieService {
         proxy.deleteCategorie(code);
     }
 
-    public Categorie saveCategorie(Categorie c, String s){
+    public Categorie saveCategorie(Categorie c){
 
         Categorie savedCategorie;
 
         c.setCode(c.getCode().toUpperCase());
 
-        if(s == "New"){
+        savedCategorie = proxy.getCategorie(c.getCode());
+
+        if(savedCategorie.equals(null)){
             savedCategorie = proxy.createCategories(c);
         }else{
             savedCategorie = proxy.updateCategorie(c);

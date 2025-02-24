@@ -26,6 +26,7 @@ public class HomeController {
         }
 
         model.addAttribute("nc", nc);
+        model.addAttribute("pageTitle", "Dashboard");
         return "home";
     }
 }
