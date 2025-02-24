@@ -32,12 +32,11 @@ public class ProduitService {
 
         p.setReference(p.getReference().toUpperCase());
         
-        savedProduit = proxy.getProduit(p.getReference());
-
-        if(savedProduit.equals(null)){
-            savedProduit = proxy.createProduits(p);
-        }else{
+        try {
+            savedProduit = proxy.getProduit(p.getReference());  
             savedProduit = proxy.updateProduit(p);
+        } catch (Exception e) {
+            savedProduit = proxy.createProduits(p);
         }
 
         return savedProduit;

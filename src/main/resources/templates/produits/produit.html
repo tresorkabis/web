@@ -1,44 +1,64 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhml"
-	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/app :: html_head" />
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout/app :: html_head}" />
+
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" th:href="@{/}">Stock</a>
-			</div>
-		</div>
-	</nav>
+	<div th:replace="~{layout/app :: menu}" />
 
 	<div class="container special">
 
 		<h2 class="h2"><span th:text="${titre}">Titre</span></h2>
 		<div>
-			<form method="post"
-				th:action="@{/saveCategorie}" th:object="${categorie}">
-				<div class="form-group">
-					<label for="code">Code</label> 
-					<input
-						type="text" th:field="*{code}" name="code" class="form-control" id="code"
-						aria-describedby="code" placeholder="Saisir le code"> 
-						<small id="code" class="form-text text-muted">Merci d'écrire le code.</small>
+			<form method="post" th:action="@{/produits/saveProduit}" th:object="${produit}">
+				<div class="row">
+					<div class="form-group col-6">
+						<label for="reference">Référence</label>
+						<input type="text" th:field="*{reference}" name="reference" class="form-control" id="reference"
+							aria-describedby="reference" placeholder="Saisir la référence">
+						<small id="reference" class="form-text text-muted">Merci d'écrire la référence.</small>
+					</div>
+					<div class="form-group col-6">
+						<label for="designation">Désignation</label>
+						<input type="text" th:field="*{designation}" name="designation" class="form-control"
+							id="designation" aria-describedby="designation" placeholder="Saisir la désignation">
+						<small id="designation" class="form-text text-muted">Merci d'écrire la designation.</small>
+					</div>
+					<div class="form-group col-6">
+						<label for="qte">Quantité</label>
+						<input type="number" th:field="*{qte}" name="qte" class="form-control" id="qte"
+							aria-describedby="qte" placeholder="Saisir la désignation">
+						<small id="qte" class="form-text text-muted">Merci d'écrire la quantité.</small>
+					</div>
+					<div class="form-group col-6">
+						<label for="prix">Prix</label>
+						<input type="number" th:field="*{prix}" name="prix" class="form-control" id="prix"
+							aria-describedby="prix" placeholder="Saisir le prix">
+						<small id="prix" class="form-text text-muted">Merci d'écrire le prix.</small>
+					</div>
+					<div class="form-group col-6">
+						<label for="codeCategorie">Catégorie</label>
+						<select th:field="*{codeCategorie}" name="codeCategorie" class="form-control" id="codeCategorie"
+							aria-describedby="codeCategorie">
+							<option value="">Séléctionner la catégorie</option>
+							<option 
+								th:each="c: ${categories}" 
+								th:value="${c.code}" 
+								th:text="${c.titre}"
+								th:selectecd="(${c.code} == *{codeCategorie})"
+								>
+							</option>
+						</select>
+						<small id="codeCategorie" class="form-text text-muted">Merci de séléctionner la catégorie.</small>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="titre">Titre</label> 
-					<input
-						type="text" th:field="*{titre}" name="titre" class="form-control" id="titre"
-						aria-describedby="titre" placeholder="Saisir le titre"> <small
-						id="lastNameHelp" class="form-text text-muted">Merci d'écrire le titre.</small>
-				</div>				
 				<button type="submit" class="btn btn-primary">Enregistrer</button>
 			</form>
 		</div>
-
 	</div>
 
-	<script th:src="@{/js/jquery.min.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+	<div th:replace="~{layout/app :: script}" />
 </body>
+
 </html>

@@ -32,12 +32,11 @@ public class CategorieService {
 
         c.setCode(c.getCode().toUpperCase());
 
-        savedCategorie = proxy.getCategorie(c.getCode());
-
-        if(savedCategorie.equals(null)){
-            savedCategorie = proxy.createCategories(c);
-        }else{
+        try {
+            savedCategorie = proxy.getCategorie(c.getCode());    
             savedCategorie = proxy.updateCategorie(c);
+        } catch (Exception e) {
+            savedCategorie = proxy.createCategories(c);
         }
 
         return savedCategorie;
