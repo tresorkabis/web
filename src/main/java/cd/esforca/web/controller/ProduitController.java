@@ -7,21 +7,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import cd.esforca.web.model.Produit;
 import cd.esforca.web.service.ProduitService;
 
+import org.springframework.web.servlet.ModelAndView;
+
+
 @Controller
+@RequestMapping("/produits")
 public class ProduitController {
 
     @Autowired
     private ProduitService service;
 
-    @GetMapping("/produits")
+    @GetMapping("")
     public String index(Model model){
         Iterable<Produit> produits = service.getProduits();
         model.addAttribute("produits", produits);
+        model.addAttribute("pageTitle", "Produits");
         return "produits/index";
     }
 
@@ -29,21 +34,24 @@ public class ProduitController {
 	public String createProduit(Model model) {
 		Produit p = new Produit();
 		model.addAttribute("produit", p);
-		return "produits/create";
+        model.addAttribute("pageTitle", "Nouveau Produit");
+        model.addAttribute("titre", "Ajout d'un nouveau produit");
+		return "produits/produit";
 	}
 
     @PostMapping("/saveProduit")
     public ModelAndView saveProduit(@ModelAttribute Produit produit){
-        System.out.println(produit.toString());
-        service.saveProduit(produit, "New");
+        service.saveProduit(produit);
         return new ModelAndView("redirect:/produits");
     }
 
-    @GetMapping("/updateProduit/{code}")
-	public String updateProduit(@PathVariable("code") final String reference, Model model) {
-		Produit p = service.getProduit(reference);		
-		model.addAttribute("produit", p);	
-		return "produits/edit";		
+    @GetMapping("/updateProduit/{reference}")
+	public String updateProduit(@PathVariable("reference") final String reference, Model model) {
+		Produit p = service.getProduit(reference);	
+		model.addAttribute("produit", p);
+        model.addAttribute("pageTitle", "Mise à jour d'un produit");	
+        model.addAttribute("titre", "Mise à jour d'un produit");
+		return "produits/produit";		
 	}
 
     @GetMapping("/deleteProduit/{reference}")
@@ -51,4 +59,5 @@ public class ProduitController {
         service.deleteProduit(reference);
         return new ModelAndView("redirect:/produits");
     }
+    
 }

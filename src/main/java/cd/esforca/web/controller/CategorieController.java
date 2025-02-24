@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import cd.esforca.web.model.Categorie;
 import cd.esforca.web.service.CategorieService;
@@ -14,12 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+@RequestMapping("/categories")
 public class CategorieController {
 
     @Autowired
     private CategorieService service;
 
-    @GetMapping("/categories")
+    @GetMapping("")
     public String index(Model model){
         Iterable<Categorie> categories = service.getCategories();
         model.addAttribute("categories", categories);

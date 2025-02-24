@@ -8,10 +8,10 @@
 	<div class="container special">
 		<div class="row">
 			<div class="col-11">
-				<h2 class="h2">Liste des catégories</h2>
+				<h2 class="h2">Liste des produits</h2>
 			</div>
 			<div class="col-1">
-				<h4><a th:href="@{/createCategorie}" class="btn btn-secondary">Ajouter</a></h4>
+				<h4><a th:href="@{/createProduit}" class="btn btn-secondary">Ajouter</a></h4>
 			</div>
 		</div>
 		
@@ -26,7 +26,7 @@
 				</thead>
 				<tbody>
 					<tr th:if="${categories.empty}">
-						<td colspan="3">Aucune catégorie en base de données</td>
+						<td colspan="3">Aucun produit en base de données</td>
 					</tr>
 					<tr th:each="categorie: ${categories}">
 						<td><span th:text="${categorie.code}"> Code </span></td>

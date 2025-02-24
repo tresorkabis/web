@@ -26,14 +26,15 @@ public class ProduitService {
         proxy.deleteProduit(reference);
     }
 
-    public Produit saveProduit(Produit p, String s){
+    public Produit saveProduit(Produit p){
 
         Produit savedProduit;
 
         p.setReference(p.getReference().toUpperCase());
         
+        savedProduit = proxy.getProduit(p.getReference());
 
-        if(s == "New"){
+        if(savedProduit.equals(null)){
             savedProduit = proxy.createProduits(p);
         }else{
             savedProduit = proxy.updateProduit(p);
