@@ -34,9 +34,9 @@
 					<tr th:each="produit: ${produits}">
 						<td><span th:text="${produit.reference}">Reférence</span></td>
 						<td><span th:text="${produit.designation}">Désignation</span></td>
-						<td><span th:text="${produit.prix}">Désignation</span></td>
-						<td><span th:text="${produit.qte}">Désignation</span></td>
-						<td><span th:text="${produit.categorie.titre}">Désignation</span></td>
+						<td><span th:text="${produit.prix}">0</span></td>
+						<td><span th:text="${produit.qte}">0</span></td>
+						<td><span th:text="${produit.categorie.titre}">Categorie</span></td>
 						<td>
 							<a th:href="@{/produits/updateProduit/{reference}(reference=${produit.reference})}" class="btn btn-info">Modifier</a>
 							<a th:href="@{/produits/deleteProduit/{reference}(reference=${produit.reference})}" class="btn btn-danger">Supprimer</a>						
