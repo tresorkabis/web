@@ -46,7 +46,7 @@
 								th:each="c: ${categories}" 
 								th:value="${c.code}" 
 								th:text="${c.titre}"
-								th:selectecd="(${c.code} == *{codeCategorie})"
+								th:selected="(${c.code} == *{codeCategorie})"
 								>
 							</option>
 						</select>
